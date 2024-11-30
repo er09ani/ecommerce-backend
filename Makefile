@@ -5,7 +5,7 @@ mvn-run:
 	./mvnw spring-boot:run
 
 mvn-run-jar :
-	./build.sh run_service
+	./build.sh run_seller_service
 
 mvn-clean-package:
 	./mvnw clean package
