@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: ${DATABASE_URL:}
     driver-class-name: org.h2.Driver
-    username: sa
-    password: password
+    username: ${DATABASE_USERNAME:}
+    password: ${DATABASE_PASSWORD:}
   jpa:
     hibernate:
       ddl-auto: update  # Auto-create the schema (e.g., create, update, validate)
