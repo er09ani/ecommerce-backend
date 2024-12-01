@@ -1,12 +1,23 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    url: ${DATABASE_URL:}
     driver-class-name: org.h2.Driver
-    username: sa
-    password: password
+    username: ${DATABASE_USERNAME:}
+    password: ${DATABASE_PASSWORD:}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
-    show-sql: true
-
+      ddl-auto: update  # Auto-create the schema (e.g., create, update, validate)
+    show-sql: true  # Log SQL queries to console
+    properties:
+      hibernate:
+        format_sql: true  # Format SQL for better readability
+        use_sql_comments: true  # Include comments in SQL queries
+        jdbc:
+          lob:
+            non_contextual_creation: true # Required for some JDBC types
+        # Disable direct field access and enforce using getters/setters for entity properties
+#        hibernate.access: property
+        # You can also use this to control lazy loading behavior
+#        hibernate.enable_lazy_load_no_trans: true
+        # Hibernate uses reflection to handle properties. If necessary, enable reflection for entity access
+        hibernate.use_reflection_optimizer: true
